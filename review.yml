@@ -1,0 +1,328 @@
+aid: hydro-one
+name: Hydro One
+review:
+  question: >-
+    Does Hydro One expose a real, verifiable consumer energy data API under
+    Ontario's Green Button mandate, and does it publish any open grid or market
+    data?
+  answer: >-
+    Yes to the mandated consumer data API — Green Button Connect My Data is
+    live behind an OAuth 2.0 authorization surface and a vendor onboarding
+    process — and no to open market data. No OpenAPI or Swagger definition
+    exists anywhere on the domain.
+  date: '2026-07-27'
+  reviewer: API Evangelist
+  homeMarket: Canada
+  tier: utility-retailer
+
+mandate:
+  regime: green-button-ontario
+  status: live-implemented
+  instrument: >-
+    Ontario Regulation 633/21 (Energy Data), made under the Electricity Act,
+    1998, section 25.35.8. Requires Ontario electricity and natural gas local
+    distribution companies to implement Green Button Download My Data (DMD) and
+    Connect My Data (CMD) and to have those implementations certified by the
+    Green Button Alliance by 01 November 2023.
+  appliesToThisOrganization: true
+  appliesToThisOrganizationEvidence: >-
+    Hydro One Networks Inc. is a licensed Ontario electricity distributor and
+    therefore falls inside the class of local distribution companies the
+    regulation binds. Hydro One's own Green Button pages describe both DMD and
+    CMD offerings and a third-party vendor onboarding process, which is the
+    behaviour of a covered entity.
+  whatWasVerified:
+    - >-
+      DMD is live but authenticated. https://www.hydroone.com/saving-money-and-energy/green-button
+      returned HTTP 200 and states Download My Data is "available now" for "up to
+      24 months of billing, consumption and transaction data" in "industry-standard
+      XML". The actual download surface
+      https://www.hydroone.com/myaccount/green-button-download-my-data returned
+      HTTP 302 to a Hydro One authentication redirect (WebFetch reported 403),
+      confirming it is a My Account feature, not a public endpoint.
+    - >-
+      CMD authorization surface is live and standards-shaped. A GET of
+      https://www.hydroone.com/green-button-cmd-home returned HTTP 200 with the
+      page title "Green Button Connect My Data". A publicly indexed instance of
+      that URL carries a genuine Green Button OAuth 2.0 authorization-code
+      request against Hydro One's ISAM/mga federation front door, with
+      response_type=code, a Hydro One-issued client_id
+      (4E5F8FDE-14E4-5EB0-9774-500BA5A4C937), a third-party redirect_uri
+      (https://api.en-pro.com/authcallback), and a NAESB ESPI function-block
+      scope string
+      "FB=1_3_4_5_13_15_16_31_37_39_51_53_54_55_56_57_58_59_60_64_65;historyLength=32148000".
+      ESPI FB scope syntax is not something a marketing page produces — it is
+      evidence of a conformant CMD data-custodian implementation with at least
+      one onboarded third party.
+    - >-
+      Third-party onboarding is real and published.
+      https://www.hydroone.com/saving-money-and-energy/green-button/third-party-apps
+      (HTTP 200), the onboarding form
+      .../green-button/third-party-onboarding-form (HTTP 200), and the terms
+      .../green-button/third-party-terms-and-conditions (HTTP 200) describe
+      registration on "HONI third-party portal", issuance of "Client ID, Client
+      Secret, Test Accounts, URI(s)", and mandatory connectivity testing "within
+      90 days".
+  whatCouldNotBeVerified:
+    - >-
+      Green Button Alliance certification for Hydro One specifically. The GBA
+      announcement of 55 certified Ontario utility platforms (NAESB REQ.21 ESPI
+      v3.3, deadline 01 November 2023) does not name individual utilities, and
+      the GBA certified-products registry paths probed
+      (/certification-registry, /certified, /certified-products,
+      /testing-certification) all returned HTTP 404. Hydro One's own third-party
+      terms do not mandate GBA certification of the vendor either.
+    - >-
+      The CMD resource base URI. It is never published. Standard Green Button
+      data-custodian paths were probed and 404'd:
+      /DataCustodian/espi/1_1/resource/ApplicationInformation,
+      /espi/1_1/resource/ApplicationInformation, /DataCustodian/oauth/authorize,
+      /mga/sps/oauth/oauth20/authorize, /mga/sps/oauth/oauth20/token.
+    - >-
+      Hydro One's public Green Button page describes CMD as reached "through app
+      marketplaces" rather than advertising a live direct integration, which
+      reads as stale relative to the working authorization surface. Recorded as
+      an inconsistency, not resolved.
+  claimVersusImplementationNote: >-
+    Recorded as live-implemented on the strength of an observed conformant OAuth
+    surface and ESPI scope syntax, not on the strength of a compliance claim. If
+    the only evidence had been Hydro One's own "available now" language or the
+    existence of O. Reg. 633/21, this would have been recorded as
+    live-claimed-unverified.
+
+dataStandard:
+  name: Green Button — Download My Data (DMD) and Connect My Data (CMD)
+  underlyingSpecification: >-
+    NAESB Retail Energy Quadrant Book 21 (REQ.21) Energy Services Provider
+    Interface (ESPI). Ontario's regulation is tied to ESPI version 3.3 per the
+    Green Button Alliance's Ontario certification announcement; Hydro One does
+    not itself publish a version number.
+  payloadFormat: ESPI XML (Atom-based)
+  otherStandardsFound: >-
+    None. No OCPP, OCPI, OpenADR, IEEE 2030.5, or IEC CIM 61968/61970 reference
+    was found anywhere on hydroone.com.
+
+consumerVersusMarketData:
+  consumer_data_api: true
+  consumerDataNote: >-
+    A third party can obtain an individual Hydro One customer's electricity
+    usage and billing data through a documented, consent-gated, standards-based
+    API — Green Button CMD — after the customer authenticates with Hydro One and
+    authorizes the vendor. Access duration is described as "indefinite with an
+    authorized Third-Party Vendor" with customer revocation available at any
+    time.
+  market_data_open: false
+  marketDataNote: >-
+    Hydro One publishes no open grid, system, or market data API and no open
+    data portal. The outage surface at https://www.hydroone.com/StormCenter
+    (HTTP 200) redirects to https://d8bkcndcv6jca.cloudfront.net/, a KUBRA-hosted
+    Storm Center single-page application (kubra.io product 5.52.0) — a vendor
+    map widget, not a documented Hydro One API. Ontario wholesale market and
+    system data is published by the IESO, a separate organization, not by Hydro
+    One. This is the split: mandated consumer data is real and gated; open
+    market data does not exist at this organization at all.
+
+accessGate:
+  gate: application-approval
+  whatADeveloperMustDo:
+    - Read and accept the Hydro One Green Button Third-Party Terms and Conditions.
+    - >-
+      Register on the HONI third-party portal via the onboarding form at
+      https://www.hydroone.com/saving-money-and-energy/green-button/third-party-onboarding-form
+      and supply company details and signed documents.
+    - >-
+      Receive, privately, a Client ID, Client Secret, test accounts, and URI(s).
+      None of these are published.
+    - >-
+      Complete connectivity testing within 90 days; Hydro One reserves the right
+      to reject applications that do not.
+    - >-
+      Exchange and maintain unexpired, unrevoked RSA certificates with a public
+      key length of at least 2048 bits, implement TLS for all exchanges with
+      HONI, and implement industry-standard denial-of-service controls.
+    - Contact point for the programme is greenbutton@HydroOne.com.
+  selfServe: false
+  notAnAccreditationRegime: >-
+    Unlike Australia's CDR, Ontario's Green Button regulation creates no
+    accredited-data-recipient register. Approval is granted by the utility
+    itself, distributor by distributor, which means a vendor must onboard
+    separately with every Ontario LDC.
+
+authModel:
+  scheme: OAuth 2.0 authorization code grant
+  scopeSyntax: >-
+    NAESB ESPI function-block scopes, observed as
+    FB=<block ids separated by underscores>;historyLength=<seconds>.
+  transportSecurity: TLS required for all exchanges with HONI.
+  additionalCredentials: Exchanged RSA certificates, minimum 2048-bit public key.
+  openidConnectDiscovery: >-
+    Not served. https://www.hydroone.com/.well-known/openid-configuration
+    returned HTTP 500 and https://www.hydroone.com/.well-known/oauth-authorization-server
+    returned HTTP 500 — a SharePoint error page, not a discovery document.
+
+downloadableContracts:
+  found: false
+  specsHarvested: 0
+  openapiDirectory: none
+  note: >-
+    No machine-readable API contract of any kind is published. Requests for
+    /openapi.json and /swagger.json returned HTTP 200 but with
+    Content-Type text/html — the SharePoint catch-all page carrying a Dynatrace
+    agent script, not JSON. Both were opened and confirmed to be HTML, so
+    neither was saved.
+
+probes:
+  - url: https://www.hydroone.com/
+    status: 200
+    note: Corporate site. og:description used verbatim for identity.
+  - url: https://hydroone.com/
+    status: 0
+    note: Apex host timed out after 20s; www is the working host.
+  - url: https://developer.hydroone.com/
+    status: 0
+    note: DNS does not resolve.
+  - url: https://developers.hydroone.com/
+    status: 0
+    note: DNS does not resolve.
+  - url: https://api.hydroone.com/
+    status: 0
+    note: DNS does not resolve.
+  - url: https://docs.hydroone.com/
+    status: 0
+    note: DNS does not resolve.
+  - url: https://data.hydroone.com/
+    status: 0
+    note: DNS does not resolve.
+  - url: https://outages.hydroone.com/
+    status: 0
+    note: DNS does not resolve.
+  - url: https://www.hydroone.com/developers
+    status: 404
+  - url: https://www.hydroone.com/api
+    status: 404
+  - url: https://www.hydroone.com/docs
+    status: 404
+  - url: https://www.hydroone.com/data
+    status: 404
+  - url: https://www.hydroone.com/api-docs
+    status: 404
+  - url: https://www.hydroone.com/openapi.json
+    status: 200
+    note: HTML SharePoint catch-all, not a specification.
+  - url: https://www.hydroone.com/swagger.json
+    status: 200
+    note: HTML SharePoint catch-all, not a specification.
+  - url: https://www.hydroone.com/.well-known/openid-configuration
+    status: 500
+  - url: https://www.hydroone.com/.well-known/oauth-authorization-server
+    status: 500
+  - url: https://www.hydroone.com/robots.txt
+    status: 200
+    note: Disallows SharePoint internals only; no API paths disclosed.
+  - url: https://www.hydroone.com/sitemap.xml
+    status: 404
+  - url: https://www.hydroone.com/saving-money-and-energy/green-button
+    status: 200
+    note: DMD "available now"; CMD described as reached via app marketplaces.
+  - url: https://www.hydroone.com/saving-money-and-energy/green-button/third-party-apps
+    status: 200
+    note: Vendor entry point — the closest thing to a developer portal.
+  - url: https://www.hydroone.com/saving-money-and-energy/green-button/third-party-onboarding-form
+    status: 200
+  - url: https://www.hydroone.com/saving-money-and-energy/green-button/third-party-terms-and-conditions
+    status: 200
+    note: Source for Client ID/Secret/URI issuance, 90-day connectivity test, RSA 2048, TLS.
+  - url: https://www.hydroone.com/myaccount/green-button-download-my-data
+    status: 302
+    note: Redirects to authentication; My Account only.
+  - url: https://www.hydroone.com/green-button-cmd-home
+    status: 200
+    note: Live CMD authorization/login surface; ESPI FB scope observed on an indexed instance.
+  - url: https://www.hydroone.com/DataCustodian/espi/1_1/resource/ApplicationInformation
+    status: 404
+  - url: https://www.hydroone.com/espi/1_1/resource/ApplicationInformation
+    status: 404
+  - url: https://www.hydroone.com/DataCustodian/oauth/authorize
+    status: 404
+  - url: https://www.hydroone.com/mga/sps/oauth/oauth20/authorize
+    status: 404
+  - url: https://www.hydroone.com/mga/sps/oauth/oauth20/token
+    status: 404
+  - url: https://www.hydroone.com/StormCenter
+    status: 200
+    note: Redirects to https://d8bkcndcv6jca.cloudfront.net/ — KUBRA Storm Center SPA.
+  - url: https://d8bkcndcv6jca.cloudfront.net/
+    status: 200
+    note: Loads kubra.io product 5.52.0 bundles; no documented Hydro One API.
+  - url: https://www.hydroone.com/power-outages-and-safety/outage-tools
+    status: 200
+    note: Consumer outage tools page; no data feed documented.
+  - url: https://www.hydroone.com/about
+    status: 200
+  - url: https://www.hydroone.com/investor-relations
+    status: 200
+  - url: https://www.linkedin.com/company/hydro-one
+    status: 200
+  - url: https://github.com/hydroone
+    status: 200
+    note: >-
+      GitHub organization exists but has 0 public repositories, no name, no
+      company, and no website set. Ownership by Hydro One Limited could not be
+      confirmed, so it was deliberately NOT recorded in apis.yml.
+  - url: https://www.oeb.ca/consumer-information-and-protection/green-button
+    status: 200
+    note: Ontario Energy Board Green Button consumer page.
+  - url: https://www.greenbuttonalliance.org/canadian-initiatives
+    status: 200
+    note: Confirms O. Reg. 633/21 and the 01 November 2023 GBA certification deadline.
+  - url: https://www.greenbuttonalliance.org/certification-registry
+    status: 404
+  - url: https://www.greenbuttonalliance.org/certified
+    status: 404
+  - url: https://www.greenbuttonalliance.org/certified-products
+    status: 404
+  - url: https://www.greenbuttonalliance.org/testing-certification
+    status: 404
+
+sources:
+  - url: https://www.hydroone.com/saving-money-and-energy/green-button
+    type: Documentation
+    note: Hydro One Green Button overview; DMD availability and 24-month XML export.
+  - url: https://www.hydroone.com/saving-money-and-energy/green-button/third-party-apps
+    type: Documentation
+    note: Third-party vendor registration path.
+  - url: https://www.hydroone.com/saving-money-and-energy/green-button/third-party-terms-and-conditions
+    type: TermsOfService
+    note: Credential issuance, connectivity testing, RSA/TLS obligations, data destruction.
+  - url: https://www.hydroone.com/green-button-cmd-home
+    type: Authentication
+    note: Live Green Button CMD authorization surface.
+  - url: https://www.ontario.ca/laws/regulation/210633
+    type: Regulation
+    note: O. Reg. 633/21, Energy Data. Cited; full text was not retrievable through e-Laws during this review.
+  - url: https://www.greenbuttonalliance.org/canadian-initiatives
+    type: Standard
+    note: Ontario mandate context and certification deadline.
+  - url: https://www.greenbuttonalliance.org/news/green-button-alliance-announces-55-ontario-based-utilities-platforms-are-now-green-button-certified
+    type: Standard
+    note: 55 Ontario platforms certified to NAESB REQ.21 ESPI 3.3; individual utilities not named.
+  - url: https://www.oeb.ca/consumer-information-and-protection/green-button
+    type: Regulator
+    note: Ontario Energy Board Green Button information.
+
+findings:
+  summary: >-
+    Hydro One is the case that separates a mandate from an implementation and
+    then, unusually, finds the implementation. Ontario compelled Green Button by
+    regulation, and Hydro One has a working CMD OAuth surface and a real vendor
+    onboarding pipeline behind it — but nothing about that surface is
+    discoverable to a developer. There is no developer subdomain, no endpoint
+    reference, no OpenAPI, no base URI, and no self-serve path. The entire API
+    exists as a private bilateral integration granted one vendor at a time. On
+    the other side of the ledger, a transmission and distribution utility that
+    operates the provincial grid publishes zero open grid data; the only public
+    data surface is a vendor-hosted outage map. Compliance produced an API;
+    it did not produce a developer program.
+  posture: mandated-and-implemented-but-undiscoverable
+  gated: true
+  openapiHarvested: false

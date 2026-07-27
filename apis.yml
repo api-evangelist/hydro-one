@@ -1,0 +1,115 @@
+aid: hydro-one
+url: https://raw.githubusercontent.com/api-evangelist/hydro-one/refs/heads/main/apis.yml
+name: Hydro One
+kind: company
+description: >-
+  Hydro One Limited (TSX: H) is Canada's largest electricity transmission and
+  distribution service provider, transmitting and distributing electricity
+  across Ontario — the province the company describes as "home to 38 per cent of
+  Canada's population." It sits in the regulated wires tier of the value chain:
+  it owns and operates the provincial transmission grid and a rural/regional
+  distribution network serving roughly 1.5 million customers, while the Ontario
+  market itself is operated by the IESO and rates are set by the Ontario Energy
+  Board. Its API posture is defined entirely by regulation, not by product.
+  Ontario Regulation 633/21 (Energy Data, under the Electricity Act, 1998)
+  compels Ontario electricity and natural gas distributors to implement Green
+  Button Download My Data (DMD) and Connect My Data (CMD) and to have those
+  implementations certified by the Green Button Alliance. Hydro One publishes
+  DMD as an authenticated XML export inside My Account, runs a live Green Button
+  CMD OAuth 2.0 authorization surface at www.hydroone.com/green-button-cmd-home,
+  and operates a published third-party vendor onboarding form and terms and
+  conditions — but the CMD resource base URI, client credentials, and test
+  accounts are issued privately during onboarding and are not published
+  anywhere. There is no developer subdomain, no OpenAPI or Swagger definition,
+  and no self-serve signup. The split is the finding: consumer energy data is
+  available through a real, standards-based, mandated API that a developer can
+  only reach by application and 90-day connectivity testing, while open grid and
+  market data is entirely absent — Hydro One publishes no open data portal and
+  no documented public system or outage API, leaving Ontario market data to the
+  IESO.
+accessModel:
+  pricing: free
+  onboarding: application-approval
+  trial: false
+  try_now: false
+  public: false
+  label: Free · Application and approval required
+  confidence: high
+  source:
+  - documentation
+  - terms
+  generated: '2026-07-27'
+  method: manual
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/groq.png
+tags:
+- Energy
+- Canada
+- Utilities
+- Electricity
+- Grid
+- Smart Metering
+- Green Button
+- Energy Data
+- Transmission
+- Distribution
+created: '2026-07-27'
+modified: '2026-07-27'
+specificationVersion: '0.19'
+apis:
+- aid: hydro-one:hydro-one-green-button-connect-my-data
+  name: Hydro One Green Button Connect My Data (CMD)
+  description: >-
+    Hydro One's Green Button Connect My Data implementation, mandated by Ontario
+    Regulation 633/21. A registered third-party vendor obtains an OAuth 2.0
+    authorization code after the customer authenticates with Hydro One and
+    consents, then retrieves that customer's electricity usage and billing data
+    as NAESB ESPI XML. The live authorization surface at
+    https://www.hydroone.com/green-button-cmd-home was observed serving a real
+    Green Button authorization request carrying ESPI function-block scope syntax
+    (FB=1_3_4_5_13_15_16_31_37_39_51_53_54_55_56_57_58_59_60_64_65;historyLength=32148000)
+    for a third-party redirect URI. Hydro One does not publish the CMD resource
+    base URI, an OpenAPI definition, or any endpoint reference — Client ID,
+    Client Secret, test accounts, and URI(s) are issued privately during vendor
+    onboarding, followed by a 90-day connectivity test and an exchange of
+    RSA 2048-bit certificates over TLS.
+  humanURL: https://www.hydroone.com/saving-money-and-energy/green-button/third-party-apps
+  tags:
+  - Green Button
+  - Connect My Data
+  - ESPI
+  - Energy Data
+  - OAuth2
+  - Consumer Data
+  properties:
+  - type: Documentation
+    url: https://www.hydroone.com/saving-money-and-energy/green-button
+  - type: Documentation
+    url: https://www.hydroone.com/saving-money-and-energy/green-button/third-party-apps
+  - type: TermsOfService
+    url: https://www.hydroone.com/saving-money-and-energy/green-button/third-party-terms-and-conditions
+  - type: SignUp
+    url: https://www.hydroone.com/saving-money-and-energy/green-button/third-party-onboarding-form
+  - type: Authentication
+    url: https://www.hydroone.com/green-button-cmd-home
+  - type: Regulation
+    url: https://www.ontario.ca/laws/regulation/210633
+  - type: Standard
+    url: https://www.greenbuttonalliance.org/
+  - type: Regulator
+    url: https://www.oeb.ca/consumer-information-and-protection/green-button
+common:
+- type: Website
+  url: https://www.hydroone.com/
+- type: About
+  url: https://www.hydroone.com/about
+- type: Documentation
+  url: https://www.hydroone.com/saving-money-and-energy/green-button
+- type: TermsOfService
+  url: https://www.hydroone.com/saving-money-and-energy/green-button/third-party-terms-and-conditions
+- type: LinkedIn
+  url: https://www.linkedin.com/company/hydro-one
+- type: Regulator
+  url: https://www.oeb.ca/consumer-information-and-protection/green-button
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
