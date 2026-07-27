@@ -1,0 +1,29 @@
+generated: '2026-07-27'
+method: searched
+source: npm, PyPI, Maven Central, NuGet, pkg.go.dev, RubyGems, Packagist, crates.io
+found: false
+note: >-
+  No first-party Hydro One client library exists in any public package registry.
+  npm searches for "hydro one" return unrelated projects (@github/hydro-analytics-client,
+  hydrooj, hydro-js, @hydro-project/*); searches for Green Button / ESPI client
+  libraries return only community and Green Button Alliance OpenESPI projects,
+  none of them published by Hydro One. Hydro One publishes no SDK page, and
+  https://github.com/hydroone is an empty GitHub organization (0 public
+  repositories, no name, company or website set) whose ownership by Hydro One
+  Limited could not be confirmed — it is deliberately not recorded as a source.
+  No `Packages` or `SDKs` pointer is wired.
+packages: []
+registries_searched:
+- npm
+- pypi
+- maven-central
+- nuget
+- pkg.go.dev
+- rubygems
+- packagist
+- crates.io
+third_party_ecosystem_note: >-
+  Vendors integrate with Green Button Connect My Data using the NAESB ESPI
+  standard directly, or via the Green Button Alliance's open-source OpenESPI
+  projects (https://github.com/GreenButtonAlliance). Those are standard-body
+  projects, not Hydro One client libraries, and are not recorded as first-party.

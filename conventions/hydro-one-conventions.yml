@@ -1,0 +1,73 @@
+generated: '2026-07-27'
+method: searched
+source: https://www.hydroone.com/saving-money-and-energy/green-button
+note: >-
+  Cross-cutting request/response semantics for Hydro One's Green Button surfaces.
+  Hydro One publishes no endpoint reference, so every convention below is either
+  stated in Hydro One's own third-party documentation and terms, or inherited
+  from the NAESB REQ.21 ESPI standard that Ontario's Energy Data regulation binds
+  the implementation to. Conventions that are neither published nor observed are
+  recorded as unknown rather than guessed.
+authentication:
+  style: OAuth 2.0 authorization code (NAESB ESPI), customer-consented
+  detail: authentication/hydro-one-authentication.yml
+  transport: TLS required for all exchanges with HONI
+  client_credentials: issued privately during onboarding; never published
+  additional: RSA 2048-bit certificate exchange with a HONI-supported CA
+authorization:
+  model: ESPI function-block scopes
+  syntax: 'FB=<block ids>;historyLength=<seconds>'
+  detail: scopes/hydro-one-scopes.yml
+  consent_holder: the Hydro One customer, who authenticates with Hydro One directly
+  revocation: customer may revoke at any time; access is otherwise indefinite
+payload:
+  format: ESPI XML (Atom-based)
+  media_type: application/atom+xml
+  media_type_source: NAESB REQ.21 ESPI standard (not restated by Hydro One)
+  json: false
+  bulk_export: >-
+    Download My Data provides up to 24 months of billing, consumption and
+    transaction data as an XML file from inside My Account.
+pagination:
+  style: unknown
+  note: >-
+    ESPI resources are Atom feeds and the standard defines published/updated and
+    interval query parameters, but Hydro One publishes no endpoint reference, so
+    nothing is asserted about its implementation.
+idempotency:
+  supported: unknown
+  note: >-
+    No idempotency key, retry contract or replay semantics is documented. Connect
+    My Data is read-only from the third party's perspective — the vendor retrieves
+    customer data, it does not write to Hydro One. No `Idempotency` pointer is
+    emitted.
+rate_limiting:
+  documented: false
+  note: >-
+    No published rate limits. The terms instead impose an obligation on the
+    vendor: "incorporate industry standard controls into your Service that prevent
+    a 'Denial of Service' type of attack."
+errors:
+  envelope: unknown
+  problem_details_rfc9457: false
+  note: No error catalogue or error reference is published.
+versioning:
+  detail: lifecycle/hydro-one-lifecycle.yml
+  in_url: unknown
+  note: ESPI resource paths conventionally carry the standard version (e.g. /espi/1_1/resource/...), but Hydro One's base URI is unpublished.
+request_tracing:
+  request_id_header: unknown
+webhooks:
+  supported: false
+  note: >-
+    No webhook, callback, event or streaming surface is documented. Connect My
+    Data is a pull integration; no AsyncAPI artifact is emitted.
+support:
+  operational_contact: greenbutton@HydroOne.com
+  contact_page: https://www.hydroone.com/contact
+related:
+- authentication/hydro-one-authentication.yml
+- scopes/hydro-one-scopes.yml
+- lifecycle/hydro-one-lifecycle.yml
+- conformance/hydro-one-conformance.yml
+- sandbox/hydro-one-sandbox.yml

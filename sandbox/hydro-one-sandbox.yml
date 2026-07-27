@@ -1,0 +1,52 @@
+generated: '2026-07-27'
+method: searched
+source: https://www.hydroone.com/saving-money-and-energy/green-button/third-party-terms-and-conditions
+note: >-
+  Hydro One operates a real test environment for Green Button Connect My Data
+  vendors — but every value in it is issued privately. No test account, client id,
+  client secret, base URI or sample payload is published anywhere. This artifact
+  records the programme and its gate, not credentials, because there are none to
+  record. Nothing here is invented.
+published_test_values: false
+self_serve: false
+gate: application-approval
+test_environment:
+  exists: true
+  name: Connect My Data connectivity testing
+  evidence: >-
+    "Upon completion of the registration, HONI's account executive will contact
+    the Applicant to facilitate the signing of necessary documents, guide
+    Applicant through the on-boarding process, and provide necessary technical
+    details to facilitate on-boarding. Applicant will be presented with a status
+    of 'Ready To Test'. The information to assist with the connectivity testing
+    will be provided, including Client ID, Client Secret, Test Accounts, URI(s)."
+  issued_privately:
+  - Client ID
+  - Client Secret
+  - Test Accounts
+  - URI(s)
+  window_days: 90
+  window_note: >-
+    "Applicant will be requested to register with the HONI third party portal and
+    complete connectivity testing within 90 days to verify capability to access
+    authorized customer data using the Connect My Data platform." HONI reserves
+    the right to reject any registration that misses the window.
+  outcome_states:
+  - Ready To Test
+  - Approved
+  - Declined
+test_vs_live_separation:
+  mechanism: separate test accounts and URI(s) issued alongside production credentials
+  key_prefixes: not published
+  mode_switch: not published
+test_values: []
+fixtures: []
+simulation_tooling: []
+how_to_get_access:
+  terms: https://www.hydroone.com/saving-money-and-energy/green-button/third-party-terms-and-conditions
+  onboarding_form: https://www.hydroone.com/saving-money-and-energy/green-button/third-party-onboarding-form
+  vendor_overview: https://www.hydroone.com/saving-money-and-energy/green-button/third-party-apps
+  contact: greenbutton@HydroOne.com
+related:
+- authentication/hydro-one-authentication.yml
+- lifecycle/hydro-one-lifecycle.yml

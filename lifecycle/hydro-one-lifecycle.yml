@@ -1,0 +1,85 @@
+generated: '2026-07-27'
+method: searched
+source: https://www.hydroone.com/saving-money-and-energy/green-button/third-party-terms-and-conditions
+note: >-
+  Hydro One publishes no API versioning policy, no deprecation policy, no SLA and
+  no API status page. What it does publish is a contractual lifecycle for
+  third-party access to Connect My Data — registration, connectivity testing,
+  approval, suspension and termination — which is captured here.
+versioning:
+  scheme: external-standard
+  current: NAESB REQ.21 ESPI (Ontario certification tied to v3.3)
+  published_by_provider: false
+  docs: null
+  note: >-
+    Versioning is inherited from the Green Button / ESPI standard rather than
+    published by Hydro One. Hydro One states no version number anywhere.
+deprecation:
+  policy_url: null
+  sunset_header: unknown
+  note: >-
+    No deprecation or sunset policy is published. The terms instead reserve
+    unilateral amendment: "HONI reserves the right to modify this Agreement at any
+    time where required by Applicable Law and with notice to Applicant", and
+    Appendix A "may be updated, amended or modified from time to time by HONI at
+    its sole discretion."
+sla:
+  url: null
+  uptime_target: null
+  note: >-
+    No SLA. The platform is offered "AS IS" and "AS AVAILABLE", with an express
+    disclaimer that operation "WILL BE UNINTERRUPTED". Hydro One commits only to
+    "commercially reasonable efforts to ensure that the Customer Data is the same
+    accuracy and quality as the energy data that is provided by HONI to customers
+    via Download My Data".
+status_page: null
+status_page_note: >-
+  No API or platform status page exists. https://www.hydroone.com/StormCenter
+  (HTTP 200) redirects to a KUBRA-hosted Storm Center outage map SPA at
+  https://d8bkcndcv6jca.cloudfront.net/ — a consumer outage widget operated by a
+  vendor, not a Hydro One service-status surface and not a documented API. No
+  `StatusPage` pointer is emitted.
+access_lifecycle:
+  states:
+  - id: registered
+    description: Applicant accepts the terms and registers on the HONI third-party portal.
+  - id: ready-to-test
+    description: >-
+      HONI account executive provides Client ID, Client Secret, Test Accounts and
+      URI(s); the portal shows the status "Ready To Test".
+  - id: approved
+    description: >-
+      Connectivity testing completed successfully and documents signed; the portal
+      shows the status "Approved" and the vendor may connect production customers.
+  - id: declined
+    description: >-
+      HONI reserves the right to reject any registration that does not complete
+      connectivity testing within 90 days; additional information is provided to
+      the applicant.
+  - id: suspended
+    description: >-
+      HONI may suspend access without notice where ordered by the OEB or on
+      reasonable evidence of material breach posing risk of harm. Prior customer
+      authorizations survive a lifted suspension.
+  - id: terminated
+    description: >-
+      HONI may terminate on material breach (15 days to cure if curable); the
+      applicant may terminate for convenience on 30 days written notice.
+  connectivity_test_window_days: 90
+  cure_period_days: 15
+  vendor_termination_notice_days: 30
+data_retention:
+  policy: >-
+    The applicant must destroy or delete Customer Data sent in error or where
+    required by Applicable Law, retaining at most one archival copy for the
+    minimum period Applicable Law requires.
+  survives_termination: true
+deprecated_operations: []
+change_communication:
+  changelog: null
+  changelog_note: No API changelog or release notes are published.
+  news: https://www.hydroone.com/newsroom
+  contact: greenbutton@HydroOne.com
+related:
+- conformance/hydro-one-conformance.yml
+- conventions/hydro-one-conventions.yml

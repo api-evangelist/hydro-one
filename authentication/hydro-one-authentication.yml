@@ -1,0 +1,87 @@
+generated: '2026-07-27'
+method: searched
+source: >-
+  https://www.hydroone.com/saving-money-and-energy/green-button/third-party-terms-and-conditions
+docs:
+- https://www.hydroone.com/saving-money-and-energy/green-button/third-party-apps
+- https://www.hydroone.com/saving-money-and-energy/green-button/third-party-terms-and-conditions
+- https://www.hydroone.com/green-button-cmd-home
+note: >-
+  Derived from Hydro One's published Green Button third-party documentation and
+  terms, and from the live Connect My Data authorization surface. Hydro One
+  publishes no OpenAPI, no endpoint reference, and no OAuth discovery document,
+  so no securitySchemes could be derived mechanically from a specification.
+summary:
+  types:
+  - oauth2
+  - mutualTLS
+  oauth2_flows:
+  - authorizationCode
+  api_key_in: []
+  discovery_document: false
+  self_serve_credentials: false
+schemes:
+- name: green-button-cmd-oauth2
+  type: oauth2
+  flow: authorizationCode
+  description: >-
+    NAESB ESPI (Green Button Connect My Data) OAuth 2.0 authorization code grant.
+    The customer is redirected from the third-party vendor's application to Hydro
+    One, authenticates with Hydro One, and consents to release of their energy
+    data; the vendor then exchanges the authorization code for an access token and
+    retrieves ESPI XML from the CMD resource endpoints.
+  authorization_surface: https://www.hydroone.com/green-button-cmd-home
+  authorization_url: not published
+  token_url: not published
+  resource_base_uri: not published
+  scope_syntax: 'FB=<function block ids separated by underscores>;historyLength=<seconds>'
+  scopes_artifact: scopes/hydro-one-scopes.yml
+  credential_issuance: >-
+    "The information to assist with the connectivity testing will be provided,
+    including Client ID, Client Secret, Test Accounts, URI(s)." Credentials and
+    URIs are issued privately by a Hydro One account executive during onboarding
+    on the HONI third-party portal — none are published.
+  source: https://www.hydroone.com/saving-money-and-energy/green-button/third-party-terms-and-conditions
+- name: mutual-certificate-exchange
+  type: mutualTLS
+  description: >-
+    Ongoing Conditions of Participation require the vendor to "exchange with HONI
+    and maintain unexpired, unrevoked RSA certificates with a public key length of
+    at least 2048 bits issued by a HONI supported Certificate Authority" and to
+    "implement Transport Layer Security for all exchanges with HONI."
+  minimum_key_length: 2048
+  certificate_authority: HONI-supported CA
+  source: https://www.hydroone.com/saving-money-and-energy/green-button/third-party-terms-and-conditions
+customer_consent:
+  initiated_by: customer, from the third-party vendor's site or app
+  authentication_at: Hydro One (customer authenticates with the utility, not the vendor)
+  vendor_may_authorize_on_behalf_of_customer: false
+  vendor_may_authorize_note: >-
+    "Can a vendor submit an authorization on behalf of a customer? No. Customers
+    must make their own online authorizations through one of the available methods
+    and authenticate with the utility before a security token can be exchanged and
+    data shared."
+  duration: indefinite while the vendor remains authorized
+  revocation: customer may revoke access at any time
+  suspension: >-
+    HONI may suspend vendor access without notice where ordered by the Ontario
+    Energy Board or on reasonable evidence of material breach.
+access_gate:
+  self_serve: false
+  gate: application-approval
+  steps:
+  - Accept the Green Button Third-Party Terms and Conditions.
+  - Register on the HONI third-party portal via the onboarding application form.
+  - Receive Client ID, Client Secret, Test Accounts and URI(s) privately from a HONI account executive.
+  - Complete connectivity testing within 90 days (status moves Ready To Test -> Approved).
+  - Exchange and maintain RSA 2048-bit certificates; implement TLS on all exchanges with HONI.
+  contact: greenbutton@HydroOne.com
+discovery:
+  openid_configuration: 'https://www.hydroone.com/.well-known/openid-configuration — HTTP 500 (no discovery document)'
+  oauth_authorization_server: 'https://www.hydroone.com/.well-known/oauth-authorization-server — HTTP 500 (no discovery document)'
+  oauth_protected_resource: 'https://www.hydroone.com/.well-known/oauth-protected-resource — HTTP 500 (no discovery document)'
+related:
+- scopes/hydro-one-scopes.yml
+- conventions/hydro-one-conventions.yml
+- conformance/hydro-one-conformance.yml
+- sandbox/hydro-one-sandbox.yml

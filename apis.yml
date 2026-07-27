@@ -40,7 +40,7 @@ accessModel:
   - terms
   generated: '2026-07-27'
   method: manual
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/groq.png
+image: https://www.hydroone.com/Style%20Library/H1/images/logo.svg
 tags:
 - Energy
 - Canada
@@ -89,8 +89,16 @@ apis:
     url: https://www.hydroone.com/saving-money-and-energy/green-button/third-party-terms-and-conditions
   - type: SignUp
     url: https://www.hydroone.com/saving-money-and-energy/green-button/third-party-onboarding-form
+  - type: GettingStarted
+    url: https://www.hydroone.com/saving-money-and-energy/green-button/third-party-apps
   - type: Authentication
     url: https://www.hydroone.com/green-button-cmd-home
+  - type: Authentication
+    url: authentication/hydro-one-authentication.yml
+  - type: OAuthScopes
+    url: scopes/hydro-one-scopes.yml
+  - type: Sandbox
+    url: sandbox/hydro-one-sandbox.yml
   - type: Regulation
     url: https://www.ontario.ca/laws/regulation/210633
   - type: Standard
@@ -98,14 +106,42 @@ apis:
   - type: Regulator
     url: https://www.oeb.ca/consumer-information-and-protection/green-button
 common:
+- type: DomainSecurity
+  url: security/hydro-one-domain-security.yml
+- type: Authentication
+  url: authentication/hydro-one-authentication.yml
+- type: OAuthScopes
+  url: scopes/hydro-one-scopes.yml
+- type: Conventions
+  url: conventions/hydro-one-conventions.yml
+- type: Conformance
+  url: conformance/hydro-one-conformance.yml
+- type: Lifecycle
+  url: lifecycle/hydro-one-lifecycle.yml
+- type: Sandbox
+  url: sandbox/hydro-one-sandbox.yml
+- type: LLMsTxt
+  url: llms/hydro-one-llms.txt
 - type: Website
   url: https://www.hydroone.com/
 - type: About
   url: https://www.hydroone.com/about
 - type: Documentation
   url: https://www.hydroone.com/saving-money-and-energy/green-button
+- type: GettingStarted
+  url: https://www.hydroone.com/saving-money-and-energy/green-button/third-party-apps
+- type: SignUp
+  url: https://www.hydroone.com/saving-money-and-energy/green-button/third-party-onboarding-form
 - type: TermsOfService
   url: https://www.hydroone.com/saving-money-and-energy/green-button/third-party-terms-and-conditions
+- type: TermsOfUse
+  url: https://www.hydroone.com/terms-of-use
+- type: PrivacyPolicy
+  url: https://www.hydroone.com/privacy
+- type: Support
+  url: https://www.hydroone.com/contact
+- type: News
+  url: https://www.hydroone.com/newsroom
 - type: LinkedIn
   url: https://www.linkedin.com/company/hydro-one
 - type: Regulator

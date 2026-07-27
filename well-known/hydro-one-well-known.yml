@@ -1,0 +1,66 @@
+generated: '2026-07-27'
+method: probed
+source: live HTTP probes, 2026-07-27
+host: https://www.hydroone.com
+found: false
+note: >-
+  No /.well-known/ discovery surface exists. www.hydroone.com is a SharePoint
+  site: /.well-known/* paths return a plain-text "500 INTERNAL SERVER ERROR" body
+  rather than a 404, and unknown top-level paths return either the SharePoint
+  error page (404) or the site catch-all HTML page with HTTP 200 — so a 200 here
+  is not evidence of a document. Every candidate below was fetched and inspected;
+  none returned a parseable discovery document, so no raw files were saved and no
+  `WellKnown` pointer is wired.
+hosts_probed:
+- www.hydroone.com
+hosts_not_resolving:
+- api.hydroone.com
+- developer.hydroone.com
+- developers.hydroone.com
+- docs.hydroone.com
+- data.hydroone.com
+- myaccount.hydroone.com
+- login.hydroone.com
+- auth.hydroone.com
+- sso.hydroone.com
+- greenbutton.hydroone.com
+- cmd.hydroone.com
+- status.hydroone.com
+- trust.hydroone.com
+documents:
+- path: /.well-known/security.txt
+  status: 500
+  file: null
+  note: plain-text "500 INTERNAL SERVER ERROR" body
+- path: /security.txt
+  status: 404
+  file: null
+- path: /.well-known/openid-configuration
+  status: 500
+  file: null
+- path: /.well-known/oauth-authorization-server
+  status: 500
+  file: null
+- path: /.well-known/oauth-protected-resource
+  status: 500
+  file: null
+- path: /.well-known/api-catalog
+  status: 500
+  file: null
+- path: /.well-known/ai-plugin.json
+  status: 200
+  file: null
+  note: HTML site catch-all page, not a plugin manifest
+- path: /llms.txt
+  status: 404
+  file: null
+- path: /openapi.json
+  status: 200
+  file: null
+  note: HTML site catch-all page, not a specification
+- path: /graphql
+  status: 404
+  file: null
+related:
+- authentication/hydro-one-authentication.yml
+- conformance/hydro-one-conformance.yml
