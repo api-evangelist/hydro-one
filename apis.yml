@@ -54,7 +54,7 @@ tags:
 - Distribution
 created: '2026-07-27'
 modified: '2026-07-27'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: hydro-one:hydro-one-green-button-connect-my-data
   name: Hydro One Green Button Connect My Data (CMD)
