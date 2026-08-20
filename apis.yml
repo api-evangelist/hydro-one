@@ -78,6 +78,13 @@ apis:
   - Connect My Data
   - ESPI
   - Energy Data
+  - Authentication
+  - Consumer Data
+  tags_raw:
+  - Green Button
+  - Connect My Data
+  - ESPI
+  - Energy Data
   - OAuth2
   - Consumer Data
   properties:
