@@ -27,6 +27,17 @@ description: >-
   market data is entirely absent — Hydro One publishes no open data portal and
   no documented public system or outage API, leaving Ontario market data to the
   IESO.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: free
   onboarding: application-approval
