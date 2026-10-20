@@ -19,8 +19,8 @@
     listed_id: prv_36de84de-ea0a-11e0-b6bb-12313d2b6294
     matched_domain: hydroone.com
     service_types:
-    - Lighting
     - Sanitation
+    - Lighting
     - Electric
     detected_by: sweep-energy.py
     detected: '2026-10-13'
