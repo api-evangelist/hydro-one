@@ -1,4 +1,4 @@
-# Hydro One (hydro-one)
+# Hydro One
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,77 +64,96 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Hydro One Limited (TSX: H) is Canada's largest electricity transmission and distribution service provider, transmitting and distributing electricity across Ontario — the province the company describes as "home to 38 per cent of Canada's population." It sits in the regulated wires tier of the value chain: it owns and operates the provincial transmission grid and a rural/regional distribution network, while the Ontario market itself is operated by the IESO and rates are set by the Ontario Energy Board. Its API posture is defined entirely by regulation, not by product. Ontario Regulation 633/21 (Energy Data, under the Electricity Act, 1998) compels Ontario electricity and natural gas distributors to implement Green Button Download My Data (DMD) and Connect My Data (CMD) and to have those implementations certified by the Green Button Alliance. Hydro One publishes DMD as an authenticated XML export inside My Account, runs a live Green Button CMD OAuth 2.0 authorization surface, and operates a published third-party vendor onboarding form and terms — but the CMD resource base URI, client credentials, and test accounts are issued privately during onboarding and are not published anywhere. There is no developer subdomain, no OpenAPI or Swagger definition, and no self-serve signup.
+Hydro One Limited (TSX: H) is Canada's largest electricity transmission and distribution service provider, transmitting and distributing electricity across Ontario — the province the company describes as "home to 38 per cent of Canada's population." It sits in the regulated wires tier of the value chain: it owns and operates the provincial transmission grid and a rural/regional distribution network serving roughly 1.5 million customers, while the Ontario market itself is operated by the IESO and rates are set by the Ontario Energy Board. Its API posture is defined entirely by regulation, not by product. Ontario Regulation 633/21 (Energy Data, under the Electricity Act, 1998) compels Ontario electricity and natural gas distributors to implement Green Button Download My Data (DMD) and Connect My Data (CMD) and to have those implementations certified by the Green Button Alliance. Hydro One publishes DMD as an authenticated XML export inside My Account, runs a live Green Button CMD OAuth 2.0 authorization surface at www.hydroone.com/green-button-cmd-home, and operates a published third-party vendor onboarding form and terms and conditions — but the CMD resource base URI, client credentials, and test accounts are issued privately during onboarding and are not published anywhere. There is no developer subdomain, no OpenAPI or Swagger definition, and no self-serve signup. The split is the finding: consumer energy data is available through a real, standards-based, mandated API that a developer can only reach by application and 90-day connectivity testing, while open grid and market data is entirely absent — Hydro One publishes no open data portal and no documented public system or outage API, leaving Ontario market data to the IESO.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/hydro-one/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/hydro-one/refs/heads/main/apis.yml)
+**Areas:** Energy · Canada · Utilities · Electricity · Grid · Smart Metering · Green Button · Energy Data · Transmission · Distribution
 
-## Tags
+## Hydro One on APIs.io
 
-- Energy
-- Canada
-- Utilities
-- Electricity
-- Grid
-- Smart Metering
-- Green Button
-- Energy Data
-- Transmission
-- Distribution
+Everything profiled for Hydro One is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/hydro-one/](https://apis.io/providers/hydro-one/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (1)
 
-- **Created:** 2026-07-27
-- **Modified:** 2026-07-27
+- [Hydro One Green Button Connect My Data (CMD)](https://apis.io/apis/hydro-one/hydro-one-green-button-connect-my-data/) — Hydro One's Green Button Connect My Data implementation, mandated by Ontario Regulation 633/21. A registered third-party vendor obtains an OAuth 2.0…
 
-## APIs
+### Published properties
 
-### Hydro One Green Button Connect My Data (CMD)
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Hydro One's Green Button Connect My Data implementation, mandated by Ontario Regulation 633/21. A registered third-party vendor obtains an OAuth 2.0 authorization code after the customer authenticates with Hydro One and consents, then retrieves that customer's electricity usage and billing data as NAESB ESPI XML. Hydro One does not publish the CMD resource base URI, an OpenAPI definition, or any endpoint reference — Client ID, Client Secret, test accounts, and URI(s) are issued privately during vendor onboarding, followed by a 90-day connectivity test and an exchange of RSA 2048-bit certificates over TLS.
+#### Security (2)
 
-- **Human URL:** [https://www.hydroone.com/saving-money-and-energy/green-button/third-party-apps](https://www.hydroone.com/saving-money-and-energy/green-button/third-party-apps)
-- **Base URL:** not published — issued privately during vendor onboarding
+Authentication, trust centre, and vulnerability disclosure.
 
-#### Tags
+- [Hydro One Authentication](https://apis.io/security/hydro-one/hydro-one-authentication/)
+- [Hydro One Domain Security](https://apis.io/security/hydro-one/hydro-one-domain-security/)
 
-- Green Button
-- Connect My Data
-- ESPI
-- Energy Data
-- OAuth2
-- Consumer Data
+#### OAuth scopes (1)
 
-#### Properties
+The permissions the API asks for.
 
-- [Documentation](https://www.hydroone.com/saving-money-and-energy/green-button)
-- [Documentation](https://www.hydroone.com/saving-money-and-energy/green-button/third-party-apps)
-- [Terms of Service](https://www.hydroone.com/saving-money-and-energy/green-button/third-party-terms-and-conditions)
-- [Sign Up](https://www.hydroone.com/saving-money-and-energy/green-button/third-party-onboarding-form)
-- [Authentication](https://www.hydroone.com/green-button-cmd-home)
-- [Regulation](https://www.ontario.ca/laws/regulation/210633)
-- [Standard](https://www.greenbuttonalliance.org/)
-- [Regulator](https://www.oeb.ca/consumer-information-and-protection/green-button)
+- [Hydro One Scopes](https://apis.io/scopes/hydro-one/hydro-one-scopes/)
 
-## Mandate
+## Where to find this API
 
-- **Regime:** `green-button-ontario` — O. Reg. 633/21 (Energy Data), Electricity Act, 1998, s. 25.35.8
-- **Status:** `live-implemented` — verified from a live CMD authorization surface carrying NAESB ESPI function-block scope syntax, plus a published third-party onboarding form and terms describing credential issuance and 90-day connectivity testing. Not recorded from a compliance claim.
-- **Data standard:** Green Button DMD and CMD over NAESB REQ.21 ESPI (Ontario certification tied to v3.3); ESPI XML payloads
-- **Consumer data API:** yes — consent-gated, accreditation-free, utility-approved
-- **Open market data:** no — Hydro One publishes no open grid or system data API; Ontario market data belongs to the IESO
-- **Access gate:** `application-approval` — accept terms, register on the HONI third-party portal, receive Client ID / Client Secret / test accounts / URI(s), pass connectivity testing within 90 days, exchange RSA 2048-bit certificates over TLS
-- **Auth model:** OAuth 2.0 authorization code with ESPI `FB=` scopes; no OpenID Connect discovery document is served
-- **Home market:** Canada
-
-## Common Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.hydroone.com/)
-- [About](https://www.hydroone.com/about)
 - [Documentation](https://www.hydroone.com/saving-money-and-energy/green-button)
-- [Terms of Service](https://www.hydroone.com/saving-money-and-energy/green-button/third-party-terms-and-conditions)
-- [LinkedIn](https://www.linkedin.com/company/hydro-one)
-- [Regulator](https://www.oeb.ca/consumer-information-and-protection/green-button)
+- [Getting started](https://www.hydroone.com/saving-money-and-energy/green-button/third-party-apps)
+- [Sign up](https://www.hydroone.com/saving-money-and-energy/green-button/third-party-onboarding-form)
+- [Support](https://www.hydroone.com/contact)
+- [Terms of service](https://www.hydroone.com/saving-money-and-energy/green-button/third-party-terms-and-conditions)
+- [Privacy policy](https://www.hydroone.com/privacy)
 
-## Maintainers
+## API Evangelist rating
 
-- Kin Lane — kin@apievangelist.com
+**Kin Score 26.7** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 58.0 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 45.2 |
+| Access clarity | 34.2 |
+
+**Agent readiness 2.5** — human-only
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 32.4** — Energy & Utilities
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/hydro-one/](https://apis.io/providers/hydro-one/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Hydro One: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/hydro-one/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
